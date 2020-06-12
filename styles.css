@@ -1,0 +1,24 @@
+body{
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,29,34,1) 66%, rgba(1,63,75,1) 100%);
+    background-repeat: no-repeat;
+    text-align: center;
+    min-height: 100vh;
+    /* padding-top: 200px; */
+}
+#wordContainer{
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: 100%;
+}
+img{
+    height: 200px;
+}
+#gameContainer{
+    margin-top: 200px;
+}
+p{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
