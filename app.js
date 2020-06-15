@@ -10,6 +10,13 @@ const message = document.querySelector("#horl");
 const userNumberGuessMessage = document.querySelector("#numberGuessed");
 const playAgain = document.querySelector("#playAgain");
 let guesses = [];
+let numTries = 0;
+
+function changeCellColor(cell){
+        console.log("cell");
+        document.querySelector(cell).style.backgroundColor = "red";
+        document.querySelector(cell).style.color = "white";
+    }
 
 
 function checkNumGuessed(num){
@@ -25,11 +32,31 @@ function checkNumGuessed(num){
         return;
     }
     if(numChosen == randomNum){
-        
+        numTries ++;
         userNumberGuessMessage.innerHTML= `You guessed ${numChosen}`;
-        message.innerHTML = `You chose correctly! The random number was ${randomNum}`;
-        playAgain.innerHTML = `<button type="button" class="btn btn-light" id="play-again">Play Again</button>`
+        
+        playAgain.innerHTML = `<button type="button" class="btn btn-light" id="play-again">Play Again</button>`;
+        if(numTries <= 4){
+            changeCellColor("#expert");
+            // setInterval(function(){
+            //     //console.log(winCell);
+            //     $("#expert").innerHTML = "hi";
+            //     $("#expert").fadeOut(500);
+            //     $("#expert").fadeIn(500);
+            // }, 1000);
+            
+            level = "Expert";
+        }else if(numTries > 4 && numTries <= 7){
+            changeCellColor("#above");
+            level = "Above Average";
+        }else{
+            changeCellColor("#average");
+            level = "Average";
+        }
+        message.innerHTML = `You chose correctly! The random number was ${randomNum}
+        You reached ${level} level!`;
     }else if(numChosen > randomNum){
+        numTries ++;
         addGuessList(numChosen);
         userNumberGuessMessage.innerHTML= `You guessed ${numChosen}`;
         message.innerHTML = "The number is LOWER!";
@@ -37,6 +64,7 @@ function checkNumGuessed(num){
         // numbersGuessedP.innerHTML = guesses.join();
 
     }else{
+        numTries ++;
         addGuessList(numChosen);
         userNumberGuessMessage.innerHTML= `You guessed ${numChosen}`;
         message.innerHTML = "The number is HIGHER!";
